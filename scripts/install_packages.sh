@@ -66,7 +66,9 @@ packages=(
 
 # install rpms
 rpm-ostree install ${packages[@]}
-rpm-ostree override replace --enablerepo=updates-testing niri
+sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/fedora-updates-testing.repo
+rpm-ostree override replace niri
+sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-updates-testing.repo
 
 
 for repo in "${repos[@]}"; do
