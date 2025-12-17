@@ -5,7 +5,6 @@ repos=(
     solopasha/hyprland
     errornointernet/quickshell
     che/nerd-fonts
-    isaksamsten/niriswitcher
 )
 
 for repo in "${repos[@]}"; do
@@ -29,7 +28,6 @@ niri_packages=(
 "nerd-fonts"
 "quickshell"
 "wlogout"
-"niriswitcher"
 "polkit-kde"
 )
 
