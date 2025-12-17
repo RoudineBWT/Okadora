@@ -12,7 +12,6 @@ for repo in "${repos[@]}"; do
 done
 
 niri_packages=(
-"niri"
 "xwayland-satellite"
 "matugen"
 "xdg-desktop-portal"
@@ -67,7 +66,7 @@ packages=(
 # install rpms
 rpm-ostree install ${packages[@]}
 sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/fedora-updates-testing.repo
-rpm-ostree override replace niri
+rpm-ostree install niri
 sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-updates-testing.repo
 
 
