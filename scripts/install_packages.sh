@@ -4,6 +4,7 @@ set -ouex pipefail
 repos=(
     solopasha/hyprland
     errornointernet/quickshell
+    alternateved/niri
     che/nerd-fonts
 )
 
