@@ -1,2 +1,33 @@
 # okadora
 [Bazzite Gnome](https://github.com/ublue-os/bazzite) Based Image but with [Niri Window Manager](https://github.com/YaLTeR/niri) and [Noctalia](https://github.com/noctalia-dev/noctalia-shell).
+I'm using the container file from [DXC-0](https://github.com/DXC-0/daemonix/tree/main) for Nix integration, so please support him!
+
+## Installation
+
+> **Note** : This image is experimental and build for testing pruposes, contact me if you want to adapt.  
+
+Rebase from any Fedora Atomic based distro :
+
+```
+sudo bootc switch ghcr.io/roudinebwt/okadora:latest
+```
+To use any additionnal feature use : 
+
+```
+okadoranix-helper
+```
+
+Manually add nixpkgs unstable channel : 
+
+```
+nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
+nix-channel --update
+```
+
+Documentation : [Nix-Determinate](https://docs.determinate.systems/determinate-nix/), [Homemanager](https://nix-community.github.io/home-manager/), [Flakes](https://zero-to-nix.com/concepts/flakes/)  
+
+-----
+
+- Special Thanks to [#Universal-Blue](https://github.com/ublue-os) and their efforts to improve Linux Desktop.
+- Thanks to [#Fedora](https://fedoraproject.org/fr/) and the [#atomic-project](https://fedoramagazine.org/introducing-fedora-atomic-desktops/) upstream
+- If you have time, check out [#Bluefin](https://projectbluefin.io/) or [#Bazzite](https://bazzite.gg/) and support them.
