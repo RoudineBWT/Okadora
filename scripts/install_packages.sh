@@ -39,7 +39,6 @@ sysadmin_packages=(
 )
 
 programming_packages=(
-  "code"
   "kitty"
 )
 
@@ -47,13 +46,6 @@ utility_packages=(
   "scrcpy"
 )
 
-docker_packages=(
-"docker-ce"
-"docker-ce-cli"
-"containerd.io"
-"docker-buildx-plugin"
-"docker-compose-plugin"
-)
 
 packages=(
   ${niri_packages[@]}
