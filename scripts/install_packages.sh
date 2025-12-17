@@ -48,8 +48,6 @@ packages=(
   ${niri_packages[@]}
   ${sysadmin_packages[@]}
   ${programming_packages[@]}
-  ${utility_packages[@]}
-  ${docker_packages[@]}
 )
 
 # install rpms
