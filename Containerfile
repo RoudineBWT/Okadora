@@ -9,7 +9,10 @@ FROM ghcr.io/ublue-os/bazzite-gnome:latest AS okadora
 
 COPY --from=ctx /system_files /
 
-# BUILD PHASE
+# OPT preparation
+
+RUN rm -rf /opt && mkdir /opt
+
 
 # BUILD PHASE
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
@@ -32,4 +35,10 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     bash /tmp/enable_services.sh && \
     bash /tmp/just.sh && \
     bash /tmp/custom.sh && \
+    rm -rf /system_files && \
+    rpm-ostree cleanup -m && \
+     rm -rf /var/cache/dnf/* && \
+    rm -rf /var/cache/rpm-ostree/* && \
+    rm -rf /var/tmp/* && \
+    rm -rf /tmp/* && \
     ostree container commit
