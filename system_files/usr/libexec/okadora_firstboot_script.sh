@@ -61,7 +61,7 @@ if command -v flatpak >/dev/null 2>&1; then
     for app in "${ESSENTIAL_FLATPAKS[@]}"; do
         if ! flatpak list --user | grep -q "$app"; then
             log "Installing $app"
-            flatpak install --user -y --noninteractive flathub "$app" 2>&1 | logger -t okadora-firstboot || true
+            flatpak install -y --noninteractive flathub "$app" 2>&1 | logger -t okadora-firstboot || true
         fi
     done
     
@@ -93,19 +93,19 @@ if command -v flatpak >/dev/null 2>&1; then
     for app in "${OPTIONAL_FLATPAKS[@]}"; do
         if ! flatpak list --user | grep -q "$app"; then
             log "Installing $app"
-            flatpak install -y --noninteractive flathub "$app" 2>&1 | logger -t okadora-firstboot || true
-        fi
-    done
-    
-    for app in "${USER_FLATPAKS[@]}"; do
-        if ! flatpak list --user | grep -q "$app"; then
-            log "Installing $app"
             flatpak install --user -y --noninteractive flathub "$app" 2>&1 | logger -t okadora-firstboot || true
         fi
     done
     
-    log "User Flatpaks installation complete"
+    # Install OBS DroidCam plugin if OBS is installed
+    if flatpak list --user | grep -q "com.obsproject.Studio"; then
+        log "Installing OBS DroidCam plugin"
+        flatpak install --user -y --noninteractive flathub com.obsproject.Studio.Plugin.DroidCam 2>&1 | logger -t okadora-firstboot || true
+    fi
+    
+    log "Flatpak installation complete"
 fi
+
 
 # Install Spicetify for Spotify customization
 if flatpak list --user | grep -q "com.spotify.Client"; then
