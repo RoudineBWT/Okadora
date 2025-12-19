@@ -4,12 +4,13 @@ ARG BASE_IMAGE=ghcr.io/ublue-os/bazzite-gnome:latest
 FROM scratch AS ctx
 COPY system_files /system_files
 COPY scripts /scripts
-COPY files /files
+
 
 # Base Image
 FROM ${BASE_IMAGE}
 
 COPY --from=ctx /system_files /
+COPY files /tmp/okadora-files
 
 # OPT preparation
 
@@ -30,8 +31,6 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     install -m755 /ctx/scripts/just.sh /tmp/just.sh && \
     install -Dm755 /ctx/scripts/okadoranix-helper.sh /usr/bin/okadoranix-helper && \
     install -Dm755 /ctx/scripts/mount-nix-overlay.sh /usr/bin/mount-nix-overlay.sh && \
-    install -Dm644 /ctx/files/okadora-firstboot.service /usr/etc/systemd/user/okadora-firstboot.service && \
-    install -Dm755 /ctx/files/okadora-firstboot-setup /usr/libexec/okadora-firstboot-setup && \
     bash /tmp/repository.sh && \
     bash /tmp/install_packages.sh && \
     bash /tmp/nix-overlay-service.sh && \
@@ -39,6 +38,8 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     bash /tmp/enable_services.sh && \
     bash /tmp/just.sh && \
     bash /tmp/custom.sh && \
+    install -Dm644 /tmp/okadora-files/okadora-firstboot.service /usr/etc/systemd/user/okadora-firstboot.service && \
+    install -Dm755 /tmp/okadora-files/okadora-firstboot-setup /usr/libexec/okadora-firstboot-setup && \
     mkdir -p /var/lib/okadora && \
     systemctl --global enable okadora-firstboot.service && \
     rm -rf /system_files && \
