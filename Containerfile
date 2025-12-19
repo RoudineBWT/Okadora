@@ -5,8 +5,8 @@ COPY system_files /system_files
 COPY scripts /scripts
 
 # Base Image
-FROM ghcr.io/ublue-os/bazzite-gnome:latest AS okadora
-FROM ghcr.io/ublue-os/bazzite-gnome-nvidia:latest AS okadora-nvidia
+ARG BASE_IMAGE=ghcr.io/ublue-os/bazzite-gnome:latest
+FROM ${BASE_IMAGE}
 
 COPY --from=ctx /system_files /
 
