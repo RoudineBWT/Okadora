@@ -470,7 +470,7 @@
         "tooltipsEnabled": true
     },
     "wallpaper": {
-        "directory": "/home/roudine/Pictures/wallpapers",
+        "directory": "~/Pictures/wallpapers",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
         "fillColor": "#000000",
