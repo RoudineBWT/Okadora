@@ -1,0 +1,69 @@
+[config]
+[templates.noctalia]
+input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/noctalia.json"
+output_path = "/home/roudine/.config/noctalia/colors.json"
+
+[templates.ghostty]
+input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/Terminal/ghostty"
+output_path = "~/.config/ghostty/themes/noctalia"
+post_hook = "bash -c 'pgrep -f ghostty >/dev/null && pkill -SIGUSR2 ghostty || true'"
+
+[templates.kitty]
+input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/Terminal/kitty.conf"
+output_path = "~/.config/kitty/themes/noctalia.conf"
+post_hook = "/etc/xdg/quickshell/noctalia-shell/Bin/colors-apply.sh kitty"
+
+[templates.alacritty]
+input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/Terminal/alacritty.toml"
+output_path = "~/.config/alacritty/themes/noctalia.toml"
+post_hook = "/etc/xdg/quickshell/noctalia-shell/Bin/colors-apply.sh alacritty"
+
+[templates.gtk_0]
+input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/gtk.css"
+output_path = "~/.config/gtk-3.0/gtk.css"
+post_hook = "gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
+
+[templates.gtk_1]
+input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/gtk.css"
+output_path = "~/.config/gtk-4.0/gtk.css"
+post_hook = "gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
+
+[templates.qt_0]
+input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/qtct.conf"
+output_path = "~/.config/qt5ct/colors/noctalia.conf"
+
+[templates.qt_1]
+input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/qtct.conf"
+output_path = "~/.config/qt6ct/colors/noctalia.conf"
+
+[templates.kcolorscheme_0]
+input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/kcolorscheme.colors"
+output_path = "~/.local/share/color-schemes/noctalia.colors"
+
+[templates.discord_vesktop]
+input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/vesktop.css"
+output_path = "~/.config/vesktop/themes/noctalia.theme.css"
+
+[templates.code_code]
+input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/code.json"
+output_path = "/home/roudine/.vscode/extensions/noctalia.noctaliatheme-0.0.5/themes/NoctaliaTheme-color-theme.json"
+
+[templates.spicetify_0]
+input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/spicetify.ini"
+output_path = "~/.config/spicetify/Themes/Comfy/color.ini"
+post_hook = "spicetify -q apply --no-restart"
+
+[templates.telegram_0]
+input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/telegram.tdesktop-theme"
+output_path = "~/.config/telegram-desktop/themes/noctalia.tdesktop-theme"
+
+[templates.cava_0]
+input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/cava.ini"
+output_path = "~/.config/cava/themes/noctalia"
+post_hook = "/etc/xdg/quickshell/noctalia-shell/Bin/colors-apply.sh cava"
+
+[templates.niri_0]
+input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/niri.kdl"
+output_path = "~/.config/niri/noctalia.kdl"
+post_hook = "/etc/xdg/quickshell/noctalia-shell/Bin/colors-apply.sh niri"
+

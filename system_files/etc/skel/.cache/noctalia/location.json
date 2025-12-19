@@ -1,0 +1,97 @@
+{
+    "latitude": "35.7",
+    "longitude": "139.6875",
+    "name": "Tokyo",
+    "weather": {
+        "current_weather": {
+            "interval": 900,
+            "is_day": 0,
+            "temperature": 4.2,
+            "time": "2025-12-20T02:30",
+            "weathercode": 0,
+            "winddirection": 360,
+            "windspeed": 1.4
+        },
+        "current_weather_units": {
+            "interval": "seconds",
+            "is_day": "",
+            "temperature": "°C",
+            "time": "iso8601",
+            "weathercode": "wmo code",
+            "winddirection": "°",
+            "windspeed": "km/h"
+        },
+        "daily": {
+            "sunrise": [
+                "2025-12-20T06:46",
+                "2025-12-21T06:47",
+                "2025-12-22T06:47",
+                "2025-12-23T06:48",
+                "2025-12-24T06:48",
+                "2025-12-25T06:48",
+                "2025-12-26T06:49"
+            ],
+            "sunset": [
+                "2025-12-20T16:30",
+                "2025-12-21T16:31",
+                "2025-12-22T16:31",
+                "2025-12-23T16:32",
+                "2025-12-24T16:32",
+                "2025-12-25T16:33",
+                "2025-12-26T16:34"
+            ],
+            "temperature_2m_max": [
+                10.4,
+                18.6,
+                10.6,
+                9.1,
+                5.9,
+                12.7,
+                8.4
+            ],
+            "temperature_2m_min": [
+                3.9,
+                7.7,
+                4.6,
+                1.6,
+                4,
+                6,
+                4
+            ],
+            "time": [
+                "2025-12-20",
+                "2025-12-21",
+                "2025-12-22",
+                "2025-12-23",
+                "2025-12-24",
+                "2025-12-25",
+                "2025-12-26"
+            ],
+            "weathercode": [
+                61,
+                61,
+                51,
+                3,
+                63,
+                61,
+                61
+            ]
+        },
+        "daily_units": {
+            "sunrise": "iso8601",
+            "sunset": "iso8601",
+            "temperature_2m_max": "°C",
+            "temperature_2m_min": "°C",
+            "time": "iso8601",
+            "weathercode": "wmo code"
+        },
+        "elevation": 26,
+        "generationtime_ms": 0.2104043960571289,
+        "latitude": 35.7,
+        "longitude": 139.6875,
+        "timezone": "Asia/Tokyo",
+        "timezone_abbreviation": "GMT+9",
+        "utc_offset_seconds": 32400
+    },
+    "weatherLastFetch": 1766166099
+}

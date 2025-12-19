@@ -1,0 +1,29 @@
+[config]
+
+[templates]
+
+# User-defined templates
+# Add your custom templates below
+# Example:
+# [templates.myapp]
+# input_path = "~/.config/noctalia/templates/myapp.css"
+# output_path = "~/.config/myapp/theme.css"
+# post_hook = "myapp --reload-theme"
+
+# Remove this section and add your own templates
+#[templates.placeholder]
+#input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/noctalia.json"
+#output_path = "/home/roudine/.cache/noctalia/placeholder.json"
+
+[templates.heroic]
+input_path = "~/.config/matugen/templates/heroic-theme.css"
+output_path = "~/.config/heroic-themes/heroic-colors.css"
+
+[templates.Telegram]
+input_path = "~/.config/matugen/templates/telegram-colors.tdesktop-theme"
+output_path = "~/.config/telegram-desktop/themes/material-you.tdesktop-theme"
+
+[templates.starship]
+input_path = "~/.config/matugen/templates/starship-colors.toml"
+output_path = "~/.config/starship.toml"
+post_hook = "starship init fish | source"

@@ -1,0 +1,126 @@
+{
+    "changelogState": {
+        "lastSeenVersion": "v3.7.1"
+    },
+    "colorSchemesList": {
+        "schemes": [
+            {
+                "name": "Cherry Blossom",
+                "path": "Cherry Blossom",
+                "url": "https://api.github.com/repos/noctalia-dev/noctalia-colorschemes/contents/Cherry%20Blossom?ref=main"
+            },
+            {
+                "name": "Cyberpunk",
+                "path": "Cyberpunk",
+                "url": "https://api.github.com/repos/noctalia-dev/noctalia-colorschemes/contents/Cyberpunk?ref=main"
+            },
+            {
+                "name": "Everdeer",
+                "path": "Everdeer",
+                "url": "https://api.github.com/repos/noctalia-dev/noctalia-colorschemes/contents/Everdeer?ref=main"
+            },
+            {
+                "name": "Everforest",
+                "path": "Everforest",
+                "url": "https://api.github.com/repos/noctalia-dev/noctalia-colorschemes/contents/Everforest?ref=main"
+            },
+            {
+                "name": "Hexa34C",
+                "path": "Hexa34C",
+                "url": "https://api.github.com/repos/noctalia-dev/noctalia-colorschemes/contents/Hexa34C?ref=main"
+            },
+            {
+                "name": "Lilac AMOLED",
+                "path": "Lilac AMOLED",
+                "url": "https://api.github.com/repos/noctalia-dev/noctalia-colorschemes/contents/Lilac%20AMOLED?ref=main"
+            },
+            {
+                "name": "Miasma",
+                "path": "Miasma",
+                "url": "https://api.github.com/repos/noctalia-dev/noctalia-colorschemes/contents/Miasma?ref=main"
+            },
+            {
+                "name": "Monochrome",
+                "path": "Monochrome",
+                "url": "https://api.github.com/repos/noctalia-dev/noctalia-colorschemes/contents/Monochrome?ref=main"
+            },
+            {
+                "name": "Noctalia legacy",
+                "path": "Noctalia legacy",
+                "url": "https://api.github.com/repos/noctalia-dev/noctalia-colorschemes/contents/Noctalia%20legacy?ref=main"
+            },
+            {
+                "name": "Oasis Abyss",
+                "path": "Oasis Abyss",
+                "url": "https://api.github.com/repos/noctalia-dev/noctalia-colorschemes/contents/Oasis%20Abyss?ref=main"
+            },
+            {
+                "name": "Osaka jade",
+                "path": "Osaka jade",
+                "url": "https://api.github.com/repos/noctalia-dev/noctalia-colorschemes/contents/Osaka%20jade?ref=main"
+            },
+            {
+                "name": "Oxocarbon",
+                "path": "Oxocarbon",
+                "url": "https://api.github.com/repos/noctalia-dev/noctalia-colorschemes/contents/Oxocarbon?ref=main"
+            },
+            {
+                "name": "Rose Pine Moon",
+                "path": "Rose Pine Moon",
+                "url": "https://api.github.com/repos/noctalia-dev/noctalia-colorschemes/contents/Rose%20Pine%20Moon?ref=main"
+            },
+            {
+                "name": "Rosey AMOLED",
+                "path": "Rosey AMOLED",
+                "url": "https://api.github.com/repos/noctalia-dev/noctalia-colorschemes/contents/Rosey%20AMOLED?ref=main"
+            },
+            {
+                "name": "Solarized",
+                "path": "Solarized",
+                "url": "https://api.github.com/repos/noctalia-dev/noctalia-colorschemes/contents/Solarized?ref=main"
+            },
+            {
+                "name": "Tokyo Night Moon",
+                "path": "Tokyo Night Moon",
+                "url": "https://api.github.com/repos/noctalia-dev/noctalia-colorschemes/contents/Tokyo%20Night%20Moon?ref=main"
+            }
+        ],
+        "timestamp": 1766161575
+    },
+    "display": {
+        "DP-1": {
+            "height": 1440,
+            "name": "DP-1",
+            "physical_height": 340,
+            "physical_width": 600,
+            "refresh_rate": 240000,
+            "scale": 1,
+            "transform": "Normal",
+            "vrr_enabled": false,
+            "vrr_supported": true,
+            "width": 2560,
+            "x": 1920,
+            "y": 0
+        },
+        "DP-3": {
+            "height": 1080,
+            "name": "DP-3",
+            "physical_height": 290,
+            "physical_width": 530,
+            "refresh_rate": 165001,
+            "scale": 1,
+            "transform": "Normal",
+            "vrr_enabled": false,
+            "vrr_supported": false,
+            "width": 1920,
+            "x": 0,
+            "y": 0
+        }
+    },
+    "notificationsState": {
+        "lastSeenTs": 1766163908000
+    },
+    "ui": {
+        "settingsSidebarExpanded": true
+    }
+}

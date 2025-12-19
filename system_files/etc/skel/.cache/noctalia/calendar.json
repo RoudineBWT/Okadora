@@ -1,0 +1,17 @@
+{
+    "cachedCalendars": [
+        {
+            "enabled": true,
+            "name": "Birthdays & Anniversaries",
+            "uid": "birthdays"
+        },
+        {
+            "enabled": true,
+            "name": "Personal",
+            "uid": "system-calendar"
+        }
+    ],
+    "cachedEvents": [
+    ],
+    "lastUpdate": "2025-12-18T13:49:05.612Z"
+}

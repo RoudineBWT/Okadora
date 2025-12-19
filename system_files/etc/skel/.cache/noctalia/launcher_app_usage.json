@@ -1,0 +1,20 @@
+{
+    "counts": {
+        "Alacritty": 1,
+        "code": 9,
+        "com.github.tchx84.Flatseal": 5,
+        "com.ranfdev.DistroShelf": 1,
+        "com.valvesoftware.Steam": 1,
+        "firewall-config": 2,
+        "io.github.kolunmi.Bazaar": 1,
+        "kitty": 4,
+        "nwg-look": 5,
+        "openrgb": 5,
+        "org.kde.gwenview": 2,
+        "org.kde.haruna": 5,
+        "org.kde.kmahjongg": 1,
+        "org.kde.kolourpaint": 2,
+        "qt5ct": 5,
+        "qt6ct": 8
+    }
+}
