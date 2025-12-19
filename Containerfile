@@ -38,13 +38,18 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     bash /tmp/enable_services.sh && \
     bash /tmp/just.sh && \
     bash /tmp/custom.sh && \
-    mkdir -p /var/lib/okadora && \
-    systemctl --global enable okadora-firstboot.service && \
-    rm -rf /usr/share/okadora-files && \
     rm -rf /system_files && \
     rpm-ostree cleanup -m && \
     rm -rf /var/cache/dnf/* && \
     rm -rf /var/cache/rpm-ostree/* && \
     rm -rf /var/tmp/* && \
-    rm -rf /tmp/* && \
-    ostree container commit
+    rm -rf /tmp/* 
+
+
+# Enable okadora firstboot service
+RUN mkdir -p /var/lib/okadora && \
+    systemctl --global enable okadora-firstboot.service
+
+# Container verification
+
+RUN bootc container lint
