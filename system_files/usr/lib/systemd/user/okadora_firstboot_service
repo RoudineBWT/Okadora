@@ -6,7 +6,7 @@ After=graphical-session.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/libexec/okadora-firstboot-setup
+ExecStart=/usr/libexec/okadora_firstboot_script.sh
 ExecStartPost=/usr/bin/mkdir -p /var/lib/okadora
 ExecStartPost=/usr/bin/touch /var/lib/okadora/%u-firstboot-done
 RemainAfterExit=yes
