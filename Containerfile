@@ -1,3 +1,4 @@
+ARG BASE_IMAGE=ghcr.io/ublue-os/bazzite-gnome:latest
 # Build context 
 
 FROM scratch AS ctx
@@ -5,7 +6,6 @@ COPY system_files /system_files
 COPY scripts /scripts
 
 # Base Image
-ARG BASE_IMAGE=ghcr.io/ublue-os/bazzite-gnome:latest
 FROM ${BASE_IMAGE}
 
 COPY --from=ctx /system_files /
