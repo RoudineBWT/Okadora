@@ -34,6 +34,16 @@ jobs:
       contents: read
       packages: write
       id-token: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - variant: ''
+            variant_name: 'AMD'
+            base_image: 'ghcr.io/ublue-os/bazzite-gnome:latest'
+          - variant: '-nvidia'
+            variant_name: 'NVIDIA'
+            base_image: 'ghcr.io/ublue-os/bazzite-gnome-nvidia:latest'
 
     steps:
       - name: Prepare environment
@@ -114,7 +124,7 @@ jobs:
             ./Containerfile
           # Postfix image name with -custom to make it a little more descriptive
           # Syntax: https://docs.github.com/en/actions/learn-github-actions/expressions#format
-          image: ${{ env.IMAGE_NAME }}
+          image: ${{ env.IMAGE_NAME }}${{ matrix.variant }}
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
           oci: false
@@ -162,7 +172,7 @@ jobs:
           REGISTRY_PASSWORD: ${{ github.token }}
         with:
           registry: ${{ env.IMAGE_REGISTRY }}
-          image: ${{ env.IMAGE_NAME }}
+          image: ${{ env.IMAGE_NAME }}${{ matrix.variant }}
           tags: ${{ steps.metadata.outputs.tags }}
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PASSWORD }}
