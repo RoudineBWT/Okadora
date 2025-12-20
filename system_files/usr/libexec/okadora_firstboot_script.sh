@@ -11,8 +11,9 @@ log() {
 
 log "Starting system-wide first boot configuration"
 
-# Créer un script temporaire pour chaque utilisateur
-TEMP_SCRIPT="/tmp/okadora-user-setup.sh"
+# Créer un script temporaire pour chaque utilisateur (dans /var/lib au lieu de /tmp)
+TEMP_SCRIPT="/var/lib/okadora/okadora-user-setup.sh"
+mkdir -p /var/lib/okadora
 
 cat > "$TEMP_SCRIPT" << 'SCRIPT_EOF'
 #!/bin/bash
