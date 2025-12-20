@@ -18,10 +18,8 @@ If you have a Nvidia GPU use this one :
 sudo bootc switch ghcr.io/roudinebwt/okadora-nvidia:latest
 ```
 
-You may need to install Starship manually. Here is the command:
-```
-brew install starship
-```
+> **Note** : *** You will need to click on the gear icon ⚙️ in gdm and select niri instead of gnome. I can't get gdm to use niri by default. ***
+
 
 To use any additionnal feature use : 
 
