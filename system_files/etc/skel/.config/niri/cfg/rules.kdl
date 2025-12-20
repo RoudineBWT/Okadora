@@ -27,7 +27,7 @@
 // ────────────── Window Rules ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
        window-rule {
-        match at-startup=true app-id="discord"
+        match at-startup=true app-id="vesktop"
         open-on-workspace ""
         default-column-width { fixed 1316; }
         default-window-height { fixed 1011; }
