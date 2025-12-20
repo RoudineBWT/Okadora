@@ -10,7 +10,7 @@ COPY scripts /scripts
 FROM ${BASE_IMAGE}
 
 COPY --from=ctx /system_files /
-RUN dconf update || true
+
 
 # OPT preparation
 
@@ -43,10 +43,14 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     rm -rf /var/tmp/* && \
     rm -rf /tmp/* 
 
+# ADDING FLATHUB SYSTEM
+RUN flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# UPDATE DCONF
+RUN dconf update || true
 
 # Enable okadora firstboot service
-RUN systemctl enable okadora-firstboot.service && \
-    systemctl enable okadora-user-check.timer
+RUN systemctl enable okadora-firstboot.service
 
 # Container verification
 
