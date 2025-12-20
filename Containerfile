@@ -10,7 +10,7 @@ COPY scripts /scripts
 FROM ${BASE_IMAGE}
 
 COPY --from=ctx /system_files /
-
+RUN dconf update || true
 
 # OPT preparation
 

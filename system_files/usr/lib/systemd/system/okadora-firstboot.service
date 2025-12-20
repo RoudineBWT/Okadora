@@ -1,0 +1,18 @@
+[Unit]
+Description=Okadora First Boot System Setup
+Documentation=https://github.com/RoudineBWT/okadora
+ConditionPathExists=!/var/lib/okadora/firstboot-done
+After=local-fs.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStartPre=/usr/bin/mkdir -p /var/lib/okadora
+ExecStart=/usr/libexec/okadora_firstboot_script.sh
+ExecStartPost=/usr/bin/touch /var/lib/okadora/firstboot-done
+RemainAfterExit=yes
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

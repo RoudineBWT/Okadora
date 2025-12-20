@@ -1,12 +1,26 @@
 #!/bin/bash
-# Okadora First Boot Setup Script
-# Applies user configuration on first boot
+# Okadora First Boot Setup Script - System Service Version
+# Applies configuration to all real users on first boot
 
 set -euo pipefail
 
-# Logger for systemd
+log() {
+    echo "[Okadora FirstBoot System] $1"
+    logger -t okadora-firstboot "$1"
+}
+
+log "Starting system-wide first boot configuration"
+
+# Créer un script temporaire pour chaque utilisateur
+TEMP_SCRIPT="/tmp/okadora-user-setup.sh"
+
+cat > "$TEMP_SCRIPT" << 'SCRIPT_EOF'
+#!/bin/bash
+set -euo pipefail
+
 log() {
     echo "[Okadora FirstBoot] $1"
+    logger -t okadora-firstboot "$1"
 }
 
 log "Starting configuration for user $USER"
@@ -18,8 +32,6 @@ if [ -z "${HOME:-}" ]; then
 fi
 
 # Copy configuration files from /etc/skel
-# --ignore-existing = don't overwrite existing files (additional safety)
-# -a = archive mode (preserves permissions, timestamps, etc.)
 if [ -d "/etc/skel" ]; then
     log "Copying configurations from /etc/skel to $HOME"
     rsync -a --ignore-existing /etc/skel/ "$HOME/" 2>&1 | logger -t okadora-firstboot || true
@@ -42,18 +54,11 @@ if command -v flatpak >/dev/null 2>&1; then
     # Essential apps - installed first
     log "Installing essential applications..."
     ESSENTIAL_FLATPAKS=(
-        # Browser
         "org.mozilla.firefox"
-        
-        # Communication
         "org.telegram.desktop"
         "im.riot.Riot"
-        
-        # Media
         "io.bassi.Amberol"
         "org.gnome.Showtime"
-        
-        # Creative
         "org.gimp.GIMP"
         "com.github.wwmm.easyeffects"
     )
@@ -61,31 +66,20 @@ if command -v flatpak >/dev/null 2>&1; then
     for app in "${ESSENTIAL_FLATPAKS[@]}"; do
         if ! flatpak list --user | grep -q "$app"; then
             log "Installing $app"
-            flatpak install -y --noninteractive flathub "$app" 2>&1 | logger -t okadora-firstboot || true
+            flatpak install --user -y --noninteractive flathub "$app" 2>&1 | logger -t okadora-firstboot || true
         fi
     done
     
     # Optional apps - nice to have
     log "Installing optional applications..."
     OPTIONAL_FLATPAKS=(
-        # Media & Entertainment
         "com.spotify.Client"
         "com.stremio.Stremio"
-        
-        # Communication
         "dev.vencord.Vesktop"
-        
-        # Streaming & Recording
         "com.obsproject.Studio"
         "com.dec05eba.gpu_screen_recorder"
-        
-        # Development & Tools
         "io.podman_desktop.PodmanDesktop"
-        
-        # Creative Tools
         "org.nickvision.tubeconverter"
-        
-        # Gaming
         "com.heroicgameslauncher.hgl"
         "org.prismlauncher.PrismLauncher"
     )
@@ -105,7 +99,6 @@ if command -v flatpak >/dev/null 2>&1; then
     
     log "Flatpak installation complete"
 fi
-
 
 # Install Spicetify for Spotify customization
 if flatpak list --user | grep -q "com.spotify.Client"; then
@@ -139,27 +132,36 @@ if flatpak list --user | grep -q "com.spotify.Client"; then
     fi
 fi
 
-
-# Okadora-specific configurations (optional)
-# Uncomment and add your custom configs here:
-
-# Example: Create specific directories
-# mkdir -p "$HOME/.config/okadora"
-# mkdir -p "$HOME/Documents" "$HOME/Downloads" "$HOME/Pictures"
-
-# Example: Apply dconf settings (for GNOME)
-# dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
-# Set Niri as default session
-if command -v dconf >/dev/null 2>&1; then
-    dconf write /org/gnome/desktop/session/session-name "'niri'"
-fi
-
-# Example: Default Git configuration
-# if ! git config --global user.name >/dev/null 2>&1; then
-#     git config --global init.defaultBranch main
-# fi
-
 log "Configuration completed successfully for $USER"
-log "This script will not run again for this user"
+SCRIPT_EOF
+
+chmod +x "$TEMP_SCRIPT"
+
+# Trouver tous les utilisateurs réels (UID >= 1000, avec un home dans /home ou /var/home)
+while IFS=: read -r username _ uid _ _ homedir shell; do
+    # Vérifier que c'est un utilisateur réel
+    if [ "$uid" -ge 1000 ] && [ "$uid" -lt 65534 ] && [ -d "$homedir" ]; then
+        log "Configuring for user: $username (UID: $uid, HOME: $homedir)"
+        
+        # Vérifier si déjà configuré pour cet utilisateur
+        if [ -f "/var/lib/okadora/${username}-configured" ]; then
+            log "User $username already configured, skipping"
+            continue
+        fi
+        
+        # Exécuter le script en tant qu'utilisateur
+        su - "$username" "$TEMP_SCRIPT" 2>&1 | logger -t okadora-firstboot || log "Warning: Configuration for $username completed with errors"
+        
+        # Marquer comme configuré
+        touch "/var/lib/okadora/${username}-configured"
+        log "User $username configuration complete"
+    fi
+done < /etc/passwd
+
+# Nettoyer
+rm -f "$TEMP_SCRIPT"
+
+log "System-wide first boot configuration completed"
+log "This script will not run again"
 
 exit 0
