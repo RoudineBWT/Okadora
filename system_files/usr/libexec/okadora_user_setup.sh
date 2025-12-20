@@ -265,12 +265,12 @@ fi
 if command -v notify-send &> /dev/null; then
     if [[ "$IS_NEW_USER" == true ]]; then
         notify-send -a "Okadora" -i "preferences-desktop-theme" \
-            "Bienvenue sur Okadora" \
-            "Votre environnement a été configuré avec succès" 2>/dev/null || true
+            "Welcome on Okadora" \
+            "Your environment has been successfully configured." 2>/dev/null || true
     else
         notify-send -a "Okadora" -i "preferences-desktop-theme" \
-            "Okadora mis à jour" \
-            "Vos personnalisations ont été préservées.\nBackup: $BACKUP_DIR" 2>/dev/null || true
+            "Okadora updated" \
+            "Your customizations have been preserved.\nBackup: $BACKUP_DIR" 2>/dev/null || true
     fi
 fi
 

@@ -5,7 +5,7 @@ I'm using the container file from [DXC-0](https://github.com/DXC-0/daemonix/tree
 
 ## Installation
 
-> **Note** : This image is experimental and build for testing pruposes, contact me if you want to adapt.  
+> **Note** : This image is experimental and build for testing pruposes, When starting up, you will need to wait approximately 5 minutes for the initial configuration to complete.  
 
 Rebase from any Fedora Atomic based distro :
 
@@ -16,6 +16,11 @@ sudo bootc switch ghcr.io/roudinebwt/okadora:latest
 If you have a Nvidia GPU use this one :
 ```
 sudo bootc switch ghcr.io/roudinebwt/okadora-nvidia:latest
+```
+
+You may need to install Starship manually. Here is the command:
+```
+brew install starship
 ```
 
 To use any additionnal feature use : 

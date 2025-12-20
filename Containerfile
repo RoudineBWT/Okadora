@@ -10,7 +10,9 @@ COPY scripts /scripts
 FROM ${BASE_IMAGE}
 
 COPY --from=ctx /system_files /
-
+RUN mkdir -p /usr/share/ublue-os/just
+COPY system_files/usr/share/ublue-os/just/60-okadora.just /usr/share/ublue-os/just/60-okadora.just
+RUN chmod 644 /usr/share/ublue-os/just/60-okadora.just
 
 # OPT preparation
 
