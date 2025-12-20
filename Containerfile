@@ -7,7 +7,7 @@ COPY scripts /scripts
 
 
 # Base Image
-FROM ${BASE_IMAGE}
+FROM ${BASE_IMAGE} AS Okadora
 
 COPY --from=ctx /system_files /
 RUN mkdir -p /usr/share/ublue-os/just
