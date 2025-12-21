@@ -213,7 +213,6 @@ if command -v flatpak >/dev/null 2>&1; then
     
     # Flatpak overrides (appliquer à chaque fois, c'est sans danger)
     log "Applying Flatpak overrides"
-    flatpak override --user --env=GTK_THEME=Adwaita-dark 2>/dev/null || true
     flatpak override --user --socket=wayland 2>/dev/null || true
     flatpak override --user --filesystem=xdg-config/gtk-3.0:ro 2>/dev/null || true
     flatpak override --user --filesystem=xdg-config/gtk-4.0:ro 2>/dev/null || true
