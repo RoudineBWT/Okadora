@@ -57,20 +57,22 @@ RUN systemctl enable force-niri-session.service
 RUN systemctl enable okadora-firstboot.service
 RUN systemctl --global enable okadora-user-setup.service
 
+# CUSTOM BRANDING - Install service, script and apply branding
+COPY system_files/usr/lib/systemd/system/okadora-branding.service /usr/lib/systemd/system/okadora-branding.service
 COPY scripts/okadora-branding.sh /tmp/okadora-branding.sh
 COPY scripts/custom.sh /tmp/custom.sh
-RUN chmod +x /tmp/custom.sh && \
+RUN chmod 644 /usr/lib/systemd/system/okadora-branding.service && \
+    chmod +x /tmp/custom.sh && \
     chmod +x /tmp/okadora-branding.sh && \
     install -Dm755 /tmp/okadora-branding.sh /usr/bin/okadora-branding.sh && \
     bash /tmp/custom.sh && \
     rm -f /tmp/custom.sh /tmp/okadora-branding.sh
 
-# Rebuild initramfs pour Plymouth
-RUN dracut --force --regenerate-all
+# Rebuild initramfs pour intégrer le nouveau logo Plymouth
+RUN dracut --force --no-hostonly --regenerate-all
 
 # Enable okadora branding service (runs at every boot)
 RUN systemctl enable okadora-branding.service
 
 # Container verification
-
 RUN bootc container lint
