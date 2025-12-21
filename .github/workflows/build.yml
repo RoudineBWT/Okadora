@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - 'assets/**'
+      - '**.png'
   schedule:
     - cron: '05 10 * * *'  # 10:05am UTC everyday
   push:
@@ -12,6 +15,7 @@ on:
     paths-ignore:
       - '**/README.md'
       - 'assets/**'
+      - '**.png'
   workflow_dispatch:
 
 env:
