@@ -31,6 +31,9 @@ EOF
 
 echo "=== Configuring Okadora fastfetch ==="
 
+# Créer le répertoire s'il n'existe pas
+mkdir -p /usr/etc/profile.d
+
 # Remplacer l'alias Bazzite
 cat > /usr/etc/profile.d/okadora-neofetch.sh <<'EOF'
 #!/bin/bash
