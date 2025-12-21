@@ -26,16 +26,14 @@ fi
 if [ ! -f "/var/lib/okadora/initramfs-rebuilt" ]; then
     log "Rebuilding initramfs for Plymouth on Fedora Atomic"
     
-    # Sur Fedora Atomic, on doit utiliser rpm-ostree pour regénérer l'initramfs
+    # Sur Fedora Atomic, on doit utiliser rpm-ostree avec l'argument dracut -I
     if command -v rpm-ostree &> /dev/null; then
-        log "Using rpm-ostree to regenerate initramfs"
-        rpm-ostree initramfs --enable 2>&1 | logger -t okadora-firstboot || log "Warning: initramfs enable had errors"
+        log "Using rpm-ostree to regenerate initramfs with dracut"
         
-        # Regénérer pour le déploiement actuel
-        log "Regenerating initramfs for current deployment"
-        rpm-ostree initramfs-etc --track=/etc/plymouth 2>&1 | logger -t okadora-firstboot || true
+        # Activer l'initramfs avec les arguments dracut pour inclure Plymouth
+        rpm-ostree initramfs --enable --arg="-I" --arg="/etc/plymouth" 2>&1 | logger -t okadora-firstboot || log "Warning: initramfs enable had errors"
         
-        log "Note: A reboot may be required for initramfs changes to take full effect"
+        log "Note: A reboot is required for initramfs changes to take effect"
     else
         log "Warning: rpm-ostree not found, cannot rebuild initramfs on atomic system"
     fi
