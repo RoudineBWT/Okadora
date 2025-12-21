@@ -68,11 +68,12 @@ RUN chmod 644 /usr/lib/systemd/system/okadora-branding.service && \
     bash /tmp/custom.sh && \
     rm -f /tmp/custom.sh /tmp/okadora-branding.sh
 
-# Rebuild initramfs pour intégrer le nouveau logo Plymouth
-RUN dracut --force --no-hostonly --regenerate-all
+# Rebuild initramfs via rpm-ostree
+RUN rpm-ostree initramfs --enable --arg=--force || echo "Warning: initramfs rebuild may occur at first boot"
 
-# Enable okadora branding service (runs at every boot)
-RUN systemctl enable okadora-branding.service
+# Unmask and enable okadora branding service
+RUN rm -f /etc/systemd/system/okadora-branding.service 2>/dev/null || true && \
+    systemctl enable okadora-branding.service
 
 # Container verification
 RUN bootc container lint
