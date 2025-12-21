@@ -68,9 +68,6 @@ RUN chmod 644 /usr/lib/systemd/system/okadora-branding.service && \
     bash /tmp/custom.sh && \
     rm -f /tmp/custom.sh /tmp/okadora-branding.sh
 
-# Rebuild initramfs pour intégrer le nouveau logo Plymouth
-RUN dracut --force --no-hostonly --regenerate-all
-
 # Enable okadora branding service (runs at every boot)
 RUN systemctl enable okadora-branding.service
 
