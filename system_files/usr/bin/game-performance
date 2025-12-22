@@ -8,28 +8,16 @@ if ! command -v tuned-adm &>/dev/null; then
     exit 1
 fi
 
-# Set performance profile with tuned using Bazzite's custom profiles
+# Don't fail if the profile doesn't exist, just run the command
+if ! tuned-adm list | grep -q 'throughput-performance-bazzite'; then
+    exec "$@"
+fi
+
+# Set performance profile, as long as the game is launched
 if [ -n "$GAME_PERFORMANCE_SCREENSAVER_ON" ]; then
-    # Allow screensaver, just set profile and run
-    tuned-adm profile throughput-performance-bazzite 2>/dev/null || \
-        tuned-adm profile throughput-performance
+    tuned-adm profile throughput-performance-bazzite
     exec "$@"
 else
-    # Save current profile to restore later
-    ORIGINAL_PROFILE=$(tuned-adm active 2>/dev/null | cut -d: -f2 | tr -d ' ')
-    
-    # Set performance profile
-    tuned-adm profile throughput-performance-bazzite 2>/dev/null || \
-        tuned-adm profile throughput-performance
-    
-    # Inhibit screensaver and run the game
-    systemd-inhibit --why "game-performance is running" -- "$@"
-    
-    # Restore previous profile after game exits
-    if [ -n "$ORIGINAL_PROFILE" ]; then
-        tuned-adm profile "$ORIGINAL_PROFILE"
-    else
-        tuned-adm profile balanced-bazzite 2>/dev/null || \
-            tuned-adm profile balanced
-    fi
+    tuned-adm profile throughput-performance-bazzite
+    exec systemd-inhibit --why "game-performance is running" -- "$@"
 fi
