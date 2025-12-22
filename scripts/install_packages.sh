@@ -28,7 +28,7 @@ niri_packages=(
 "nerd-fonts"
 "quickshell"
 "wlogout"
-"mate-polkit"
+"polkit-kde"
 )
 
 
