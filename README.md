@@ -1,7 +1,7 @@
 # Okadora
 ![Screenshot of Okadora](assets/okadora.png)
 [Bazzite Gnome](https://github.com/ublue-os/bazzite) Based Image but with [Niri Window Manager](https://github.com/YaLTeR/niri) and [Noctalia](https://github.com/noctalia-dev/noctalia-shell).
-I'm using the container file from [DXC-0](https://github.com/DXC-0/daemonix/tree/main) for Nix integration, so please support him!
+I'm using the container file from [DXC-0](https://github.com/DXC-0/daemonix/tree/main) for Nix integration, so please support him! Finally, I suggest [Zirconium](github.com/zirconium-dev/zirconium) if you want a better/simpler experience under niri.
 
 ## Installation
 
