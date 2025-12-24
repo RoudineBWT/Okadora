@@ -15,13 +15,10 @@ fi
 
 echo "Nix RPM installed successfully"
 
-# Create necessary directories (skip /root as it already exists)
+# Create necessary directories
 mkdir -p /var/lib/nix
 mkdir -p /var/cache/nix
 mkdir -p /nix/var/nix/profiles/per-user/root
-
-# Create .nix-channels in root's home (don't create /root itself)
-mkdir -p /root/.nix-channels 2>/dev/null || true
 
 # Configure Nix
 mkdir -p /etc/nix
@@ -33,7 +30,7 @@ build-users-group = nixbld
 max-jobs = auto
 EOF
 
-# Setup channels during build (write to file, not directory)
+# Setup channels during build - write directly to the FILE (not directory)
 echo "https://nixos.org/channels/nixpkgs-unstable nixpkgs" > /root/.nix-channels
 
 # Configure the default profile if nix binary exists
