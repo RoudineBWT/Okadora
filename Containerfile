@@ -31,9 +31,9 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     install -m755 /ctx/scripts/nix.sh /tmp/nix.sh && \
     install -m755 /ctx/scripts/enable_services.sh /tmp/enable_services.sh && \
     install -Dm755 /ctx/scripts/okadoranix-helper.sh /usr/bin/okadoranix-helper && \
+    install -Dm755 /ctx/scripts/mount-nix-overlay.sh /usr/bin/mount-nix-overlay.sh && \
     install -m755 /ctx/scripts/dracut.sh /tmp/dracut.sh && \
     install -Dm755 /ctx/scripts/force-niri-session.sh /usr/bin/force-niri-session.sh && \
-    echo "=== Step 1: Repositories & Packages ===" && \
     bash /tmp/repository.sh && \
     bash /tmp/install_packages.sh && \
     bash /tmp/nix-overlay-service.sh && \
