@@ -1,7 +1,12 @@
 #!/bin/bash
 set -ouex pipefail
 
-mkdir -p /root 2>/dev/null || true
+if [! -d /root ] || [! -w /root ]; then
+    rm -rf /root 2>/dev/null || true
+    mkdir -p /root
+    chmod 0750 /root
+    chown root:root /root
+fi
 
 dnf install -y https://nix-community.github.io/nix-installers/nix/x86_64/nix-multi-user-2.24.10.rpm
 
