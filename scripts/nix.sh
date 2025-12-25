@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ouex pipefail
 
-if [! -d /root ] || [! -w /root ]; then
+if [ ! -d /root ] || [ ! -w /root ]; then
     rm -rf /root 2>/dev/null || true
     mkdir -p /root
     chmod 0750 /root
