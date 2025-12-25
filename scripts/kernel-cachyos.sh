@@ -7,8 +7,8 @@ printf '%s\n' '#!/bin/sh' 'exit 0' > 05-rpmostree.install
 printf '%s\n' '#!/bin/sh' 'exit 0' > 50-dracut.install
 chmod +x  05-rpmostree.install 50-dracut.install
 popd
-dnf -y copr enable bieszczaders/kernel-cachyos-lto
-dnf -y copr disable bieszczaders/kernel-cachyos-lto
+dnf -y copr enable bieszczaders/kernel-cachyos
+dnf -y copr disable bieszczaders/kernel-cachyos
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos install \
   kernel-cachyos
 dnf -y copr enable bieszczaders/kernel-cachyos-addons
