@@ -9,8 +9,8 @@ chmod +x  05-rpmostree.install 50-dracut.install
 popd
 dnf -y copr enable bieszczaders/kernel-cachyos-lto
 dnf -y copr disable bieszczaders/kernel-cachyos-lto
-dnf -y --enablerepo copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos-lto install \
-  kernel-cachyos-lto
+dnf -y --enablerepo copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos install \
+  kernel-cachyos
 dnf -y copr enable bieszczaders/kernel-cachyos-addons
 dnf -y copr disable bieszczaders/kernel-cachyos-addons
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos-addons swap zram-generator-defaults cachyos-settings
