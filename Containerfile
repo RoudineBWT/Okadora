@@ -31,26 +31,17 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     install -m755 /ctx/scripts/nix.sh /tmp/nix.sh && \
     install -m755 /ctx/scripts/enable_services.sh /tmp/enable_services.sh && \
     install -Dm755 /ctx/scripts/okadoranix-helper.sh /usr/bin/okadoranix-helper && \
+    install -m755 /ctx/scripts/dracut.sh /tmp/dracut.sh && \
     install -Dm755 /ctx/scripts/force-niri-session.sh /usr/bin/force-niri-session.sh && \
     echo "=== Step 1: Repositories & Packages ===" && \
     bash /tmp/repository.sh && \
     bash /tmp/install_packages.sh && \
-    echo "=== Step 2: CachyOS Kernel (BEFORE overlay setup) ===" && \
-    bash /tmp/kernel-cachyos.sh && \
-    echo "=== Step 3: Nix installation ===" && \
-    bash /tmp/nix.sh && \
-    echo "=== Step 4: Nix overlay service (AFTER kernel and nix installation) ===" && \
     bash /tmp/nix-overlay-service.sh && \
-    echo "=== Step 5: Enable services ===" && \
+    bash /tmp/nix.sh && \
+    bash /tmp/kernel-cachyos.sh && \
+    bash /tmp/dracut.sh && \
     bash /tmp/enable_services.sh && \
-    # Vérification finale
-    echo "=== Verification ===" && \
-    KERNEL_VER=$(ls /usr/lib/modules/ | grep cachyos | head -n1) && \
-    echo "Installed kernel: $KERNEL_VER" && \
-    test -f /usr/lib/modules/$KERNEL_VER/kernel/fs/overlayfs/overlay.ko* && echo "✓ Overlay module present for CachyOS kernel" || echo "⚠ Warning: Overlay module not found" && \
-    test -d /usr/share/nix-store/store && echo "✓ Nix store data present" || echo "✗ ERROR: No Nix store data!" && \
-    ls -la /usr/share/nix-store/ && \
-    # Cleanup (sans toucher à /usr/share/nix-store)
+    # Cleanup
     rm -rf /system_files && \
     rpm-ostree cleanup -m && \
     rm -rf /var/cache/dnf/* && \

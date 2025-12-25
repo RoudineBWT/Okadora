@@ -1,3 +1,6 @@
+#!/bin/bash
+set -ouex pipefail
+
 # Cachyos kernel
 for pkg in kernel kernel-core kernel-modules kernel-modules-core; do
   rpm --erase $pkg --nodeps
