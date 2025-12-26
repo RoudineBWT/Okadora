@@ -28,6 +28,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     install -m755 /ctx/scripts/repository.sh /tmp/repository.sh && \
     install -m755 /ctx/scripts/install_packages.sh /tmp/install_packages.sh && \
     install -m755 /ctx/scripts/nix.sh /tmp/nix.sh && \
+    install -m755 /ctx/scripts/nix-systemd-mount.sh /tmp/nix-systemd-mount.sh && \
     install -m755 /ctx/scripts/kernel-cachyos.sh /tmp/kernel-cachyos.sh && \
     install -m755 /ctx/scripts/dracut.sh /tmp/dracut.sh && \
     install -m755 /ctx/scripts/enable_services.sh /tmp/enable_services.sh && \
@@ -37,10 +38,11 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     bash /tmp/repository.sh && \
     bash /tmp/install_packages.sh && \
     bash /tmp/nix.sh && \
+    bash /tmp/nix-systemd-mount.sh && \
     bash /tmp/kernel-cachyos.sh && \
     bash /tmp/dracut.sh && \
     bash /tmp/enable_services.sh && \
-    # cleanup
+
     rm -rf /system_files && \
     rpm-ostree cleanup -m && \
     rm -rf /var/cache/dnf/* && \
